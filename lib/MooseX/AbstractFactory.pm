@@ -5,7 +5,7 @@ use Moose::Exporter;
 use MooseX::AbstractFactory::Role;
 use MooseX::AbstractFactory::Meta::Class;
 
-our $VERSION = '0.3.1';
+our $VERSION = '0.3.2';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:PENFOLD';
 

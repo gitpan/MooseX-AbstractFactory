@@ -3,9 +3,8 @@ use Test::Moose;
 use Test::Exception;
 
 BEGIN {
-	package My::Test::Implementation;
+	package Bar::Implementation;
 	use Moose;
-
 
 	has connection => (is => 'ro', isa => 'Str');
 
@@ -13,8 +12,12 @@ BEGIN {
 
 	package My::Factory;
 	use MooseX::AbstractFactory;
-	
-	implementation_class_via sub { "My::Test::" . shift };
+
+	sub _get_implementation_class {
+		my ($self, $impl) = @_;
+		
+		return "Bar::" . $impl;
+	}
 }
 
 my $imp;
@@ -26,4 +29,4 @@ lives_ok {
 	);
 } "Factory->new() doesn't die";
 
-isa_ok($imp, "My::Test::Implementation");
+isa_ok($imp, "Bar::Implementation");

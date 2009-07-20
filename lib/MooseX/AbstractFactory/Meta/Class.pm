@@ -2,7 +2,7 @@ package MooseX::AbstractFactory::Meta::Class;
 use Moose;
 extends 'Moose::Meta::Class';
 
-our $VERSION = '0.3.1';
+our $VERSION = '0.3.2';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:PENFOLD';
 

@@ -3,7 +3,7 @@ package MooseX::AbstractFactory::Role;
 use Moose::Autobox;
 use Moose::Role;
 
-our $VERSION = '0.3.1';
+our $VERSION = '0.3.2';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:PENFOLD';
 
@@ -87,7 +87,7 @@ __END__
 
 =head1 NAME
 
-MooseX::AbstractFactory - AbstractFactory behaviour as a Moose extension
+MooseX::AbstractFactory::Role - AbstractFactory behaviour as a Moose extension
 
 =head1 SYNOPSIS
 
