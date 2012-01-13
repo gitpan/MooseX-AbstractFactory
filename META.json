@@ -1,0 +1,68 @@
+{
+   "abstract" : "AbstractFactory behaviour as a Moose extension",
+   "author" : [
+      "Mike Whitaker <mike@altrion.org>",
+      "Caleb Cushing <xenoterracide@gmail.com>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Dist::Zilla version 4.300006, CPAN::Meta::Converter version 2.113640",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "MooseX-AbstractFactory",
+   "no_index" : {
+      "file" : [
+         "perlcritic.rc"
+      ]
+   },
+   "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "6.30"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Class::Load" : 0,
+            "Moose" : 0,
+            "Moose::Autobox" : 0,
+            "Moose::Exporter" : 0,
+            "Moose::Meta::Class" : 0,
+            "Moose::Role" : 0,
+            "Try::Tiny" : 0,
+            "strict" : 0,
+            "warnings" : 0
+         }
+      },
+      "test" : {
+         "requires" : {
+            "English" : 0,
+            "File::Find" : 0,
+            "File::Temp" : 0,
+            "Test::Exception" : 0,
+            "Test::Moose" : 0,
+            "Test::More" : "0.88",
+            "Test::Requires" : 0,
+            "perl" : "5.006"
+         }
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/fleetfootmike/MX-AbstractFactory/issues"
+      },
+      "homepage" : "http://search.cpan.org/dist/MooseX-AbstractFactory/",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/fleetfootmike/MX-AbstractFactory.git",
+         "web" : "https://github.com/fleetfootmike/MX-AbstractFactory"
+      }
+   },
+   "version" : "0.003003"
+}
+

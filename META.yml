@@ -1,24 +1,41 @@
 ---
 abstract: 'AbstractFactory behaviour as a Moose extension'
 author:
-  - 'Mike Whitaker  C<< <mike@altrion.org> >>'
+  - 'Mike Whitaker <mike@altrion.org>'
+  - 'Caleb Cushing <xenoterracide@gmail.com>'
 build_requires:
+  English: 0
+  File::Find: 0
+  File::Temp: 0
   Test::Exception: 0
   Test::Moose: 0
-distribution_type: module
-generated_by: 'Module::Install version 0.77'
+  Test::More: 0.88
+  Test::Requires: 0
+  perl: 5.006
+configure_requires:
+  ExtUtils::MakeMaker: 6.30
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 4.300006, CPAN::Meta::Converter version 2.113640'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: MooseX-AbstractFactory
 no_index:
-  directory:
-    - inc
-    - t
+  file:
+    - perlcritic.rc
 requires:
+  Class::Load: 0
   Moose: 0
   Moose::Autobox: 0
+  Moose::Exporter: 0
+  Moose::Meta::Class: 0
+  Moose::Role: 0
+  Try::Tiny: 0
+  strict: 0
+  warnings: 0
 resources:
-  license: http://dev.perl.org/licenses/
-version: 0.3.1
+  bugtracker: https://github.com/fleetfootmike/MX-AbstractFactory/issues
+  homepage: http://search.cpan.org/dist/MooseX-AbstractFactory/
+  repository: git://github.com/fleetfootmike/MX-AbstractFactory.git
+version: 0.003003

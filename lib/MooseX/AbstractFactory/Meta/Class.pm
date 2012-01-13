@@ -1,9 +1,11 @@
 package MooseX::AbstractFactory::Meta::Class;
+use strict;
+use warnings;
 use Moose;
 extends 'Moose::Meta::Class';
 
-our $VERSION = '0.3.2';
-$VERSION = eval $VERSION;
+our $VERSION = '0.003003'; # VERSION
+
 our $AUTHORITY = 'cpan:PENFOLD';
 
 has implementation_roles => (
@@ -18,11 +20,20 @@ has implementation_class_maker => (
     predicate => 'has_class_maker',
 );
 1;
+
+#ABSTRACT: Meta class for MooseX::AbstractFactory
+
+
 __END__
+=pod
 
 =head1 NAME
 
 MooseX::AbstractFactory::Meta::Class - Meta class for MooseX::AbstractFactory
+
+=head1 VERSION
+
+version 0.003003
 
 =head1 SYNOPSIS
 
@@ -32,7 +43,7 @@ You shouldn't be using this on its own, but via MooseX::AbstractFactory
 
 Metaclass to implement an AbstractFactory as a Moose extension.
 
-=head1 SUBROUTINES/METHODS 
+=head1 METHODS
 
 =head2 implementation_roles
 
@@ -50,59 +61,41 @@ Coderef to generate a full class from a tag in the factory create() method.
 
 Predicate for above
 
-=head1 CONFIGURATION AND ENVIRONMENT
- 
-MooseX::AbstractFactory requires no configuration files or environment variables.
-
-
-=head1 DEPENDENCIES
-
-Moose.
-
-
-=head1 INCOMPATIBILITIES
-
-None reported.
-
-
 =head1 BUGS AND LIMITATIONS
 
 No bugs have been reported. Yet.
 
 Please report any bugs or feature requests to C<mike@altrion.org>, or via RT.
 
+=head1 BUGS
 
-=head1 AUTHOR
+Please report any bugs or feature requests on the bugtracker website
+https://github.com/fleetfootmike/MX-AbstractFactory/issues
 
-Mike Whitaker  C<< <mike@altrion.org> >>
+When submitting a bug or request, please include a test-file or a
+patch to an existing test-file that illustrates the bug or desired
+feature.
 
+=head1 AUTHORS
 
-=head1 LICENSE AND COPYRIGHT
+=over 4
 
-Copyright (c) 2007-8, Mike Whitaker C<< <mike@altrion.org> >>.
+=item *
 
-This module is free software; you can redistribute it and/or
-modify it under the same terms as Perl itself. See L<perlartistic>.
+Mike Whitaker <mike@altrion.org>
 
-=head1 DISCLAIMER OF WARRANTY
+=item *
 
-BECAUSE THIS SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
-FOR THE SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN
-OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
-PROVIDE THE SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER
-EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE
-ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE SOFTWARE IS WITH
-YOU. SHOULD THE SOFTWARE PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL
-NECESSARY SERVICING, REPAIR, OR CORRECTION.
+Caleb Cushing <xenoterracide@gmail.com>
 
-IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
-WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
-REDISTRIBUTE THE SOFTWARE AS PERMITTED BY THE ABOVE LICENCE, BE
-LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL,
-OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE
-THE SOFTWARE (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING
-RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A
-FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
-SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
-SUCH DAMAGES.
+=back
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2012 by Mike Whitaker.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+

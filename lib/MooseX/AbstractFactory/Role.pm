@@ -1,10 +1,14 @@
 package MooseX::AbstractFactory::Role;
-
-use Moose::Autobox;
+use strict;
+use warnings;
 use Moose::Role;
 
-our $VERSION = '0.3.2';
-$VERSION = eval $VERSION;
+use Moose::Autobox;
+use Class::Load qw( load_class );
+use Try::Tiny;
+
+our $VERSION = '0.003003'; # VERSION
+
 our $AUTHORITY = 'cpan:PENFOLD';
 
 has _options        => (is => 'ro', isa => 'HashRef');
@@ -19,10 +23,11 @@ sub create {
 
     if (defined $impl) {
         my $iclass = $factory->_get_implementation_class($i);
+
         # pull in our implementation class
         $factory->_validate_implementation_class($iclass);
 
-        eval "use $iclass";
+       load_class( $iclass );
 
         my $options = $factory->_options();
 
@@ -41,7 +46,7 @@ sub _get_implementation_class {
     my $class = blessed $self;
     if ($self->meta->has_class_maker) {
         return $self->meta->implementation_class_maker->($impl);
-    } 
+    }
     else {
         return $class . "::$impl";
     }
@@ -50,9 +55,9 @@ sub _get_implementation_class {
 sub _validate_implementation_class {
     my ($self, $iclass) = @_;
 
-    eval {
+    try {
         # can we load the class?
-        Class::MOP->load_class($iclass);    # may die if user really stuffed up _get_implementation_class()
+        load_class($iclass);    # may die if user really stuffed up _get_implementation_class()
 
         if ($self->meta->has_implementation_roles) {
             my $roles = $self->meta->implementation_roles();
@@ -76,18 +81,28 @@ sub _validate_implementation_class {
                 Moose::Meta::Role->combine($roles->map(sub { $_->meta; } ))->apply($anon);
             }
         }
+    }
+    catch {
+        confess "Invalid implementation class $iclass: $_";
     };
-    confess "Invalid implementation class $iclass: $@" if $@;
 
     return;
 }
 
 1;
+# ABSTRACT: AbstractFactory behaviour as a Moose extension
+
+
 __END__
+=pod
 
 =head1 NAME
 
 MooseX::AbstractFactory::Role - AbstractFactory behaviour as a Moose extension
+
+=head1 VERSION
+
+version 0.003003
 
 =head1 SYNOPSIS
 
@@ -97,65 +112,48 @@ You shouldn't be using this on its own, but via MooseX::AbstractFactory
 
 Role to implement an AbstractFactory as a Moose extension.
 
-
-=head1 SUBROUTINES/METHODS 
+=head1 METHODS
 
 =head2 create()
 
 Returns an instance of the requested implementation.
 
     use MooseX::AbstractFactory;
-    
-	my $imp = My::Factory->create(
-		'Implementation',
-		{ connection => 'Type1' },
-	);
-	
+
+    my $imp = My::Factory->create(
+        'Implementation',
+        { connection => 'Type1' },
+    );
+
 =head2 _validate_implementation_class()
 
-Checks that the implementation class exists (via Class::MOP->load_class() ) 
+Checks that the implementation class exists (via Class::MOP->load_class() )
 to be used, and (optionally) that it provides the methods defined in _roles().
 
-This can be overriden by a factory class definition if required: for example
+This can be overridden by a factory class definition if required: for example
 
-	sub _validate_implementation_class {
-		my $self = shift;
-		return 1; # all implementation classes are valid :)
-	}
-
+    sub _validate_implementation_class {
+        my $self = shift;
+        return 1; # all implementation classes are valid :)
+    }
 
 =head2 _get_implementation_class()
 
-By default, the factory figures out the class of the implementation requested 
+By default, the factory figures out the class of the implementation requested
 by prepending the factory class itself, so for example
 
-	my $imp = My::Factory->new(
-		implementation => 'Implementation')
-		
+    my $imp = My::Factory->new(
+        implementation => 'Implementation')
+
 will return an object of class My::Factory::Implementation.
 
 This can be overridden in the factory class by redefining the
 _get_implementation_class() method, for example:
-	
-	sub _get_implementation_class {
-		my ($self, $class) = @_;
-		return "My::ImplementationClasses::$class";
-	}
 
-=head1 CONFIGURATION AND ENVIRONMENT
- 
-MooseX::AbstractFactory requires no configuration files or environment variables.
-
-
-=head1 DEPENDENCIES
-
-Moose, and Moose::Autobox
-
-
-=head1 INCOMPATIBILITIES
-
-None reported.
-
+    sub _get_implementation_class {
+        my ($self, $class) = @_;
+        return "My::ImplementationClasses::$class";
+    }
 
 =head1 BUGS AND LIMITATIONS
 
@@ -163,41 +161,40 @@ No bugs have been reported. Yet.
 
 Please report any bugs or feature requests to C<mike@altrion.org>, or via RT.
 
+=head1 ACKNOWLEDGMENTS
 
-=head1 AUTHOR
-
-Mike Whitaker  C<< <mike@altrion.org> >>
-
-With thanks to Matt Trout for some of the ideas for the code in
+Thanks to Matt Trout for some of the ideas for the code in
 _validate_implementation_class.
 
+=head1 BUGS
 
-=head1 LICENSE AND COPYRIGHT
+Please report any bugs or feature requests on the bugtracker website
+https://github.com/fleetfootmike/MX-AbstractFactory/issues
 
-Copyright (c) 2007-8, Mike Whitaker C<< <mike@altrion.org> >>.
+When submitting a bug or request, please include a test-file or a
+patch to an existing test-file that illustrates the bug or desired
+feature.
 
-This module is free software; you can redistribute it and/or
-modify it under the same terms as Perl itself. See L<perlartistic>.
+=head1 AUTHORS
 
-=head1 DISCLAIMER OF WARRANTY
+=over 4
 
-BECAUSE THIS SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
-FOR THE SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN
-OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
-PROVIDE THE SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER
-EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE
-ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE SOFTWARE IS WITH
-YOU. SHOULD THE SOFTWARE PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL
-NECESSARY SERVICING, REPAIR, OR CORRECTION.
+=item *
 
-IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
-WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
-REDISTRIBUTE THE SOFTWARE AS PERMITTED BY THE ABOVE LICENCE, BE
-LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL,
-OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE
-THE SOFTWARE (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING
-RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A
-FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
-SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
-SUCH DAMAGES.
+Mike Whitaker <mike@altrion.org>
+
+=item *
+
+Caleb Cushing <xenoterracide@gmail.com>
+
+=back
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2012 by Mike Whitaker.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
