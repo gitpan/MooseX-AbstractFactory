@@ -2,10 +2,27 @@ use strict;
 use warnings;
 use Test::More;
 use Test::Exception;
+{
+	package My::Connection;
+	use Moose;
+
+	has type => (
+		is => 'ro',
+		isa => 'Str',
+		default => sub { 'Type1' },
+		lazy => 1,
+	);
+}
 
 {
 	package My::Factory::Implementation;
 	use Moose;
+
+	around BUILDARGS => sub {
+		my ( $orig, $self, $conn ) = @_;
+
+		$self->$orig({ connection => $conn->type });
+	};
 
 	has connection => (is => 'ro', isa => 'Str');
 
@@ -18,12 +35,13 @@ use Test::Exception;
 	use Moose;
 }
 
-my $imp;
+my $connection = My::Connection->new;
 
+my $imp;
 lives_ok {
 	$imp = My::Factory->create(
     	'Implementation',
-    	{ connection => 'Type1' }
+		$connection
 	);
 } "Factory->new() doesn't die";
 

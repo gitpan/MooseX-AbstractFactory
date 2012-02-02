@@ -7,17 +7,17 @@ use Moose::Autobox;
 use Class::Load qw( load_class );
 use Try::Tiny;
 
-our $VERSION = '0.003003'; # VERSION
+our $VERSION = '0.004000'; # VERSION
 
 our $AUTHORITY = 'cpan:PENFOLD';
 
-has _options        => (is => 'ro', isa => 'HashRef');
+has _options        => (is => 'ro', isa => 'ArrayRef[Any]');
 has _implementation => (is => 'ro', isa => 'Str');
 
 sub create {
-    my ($class, $impl, $args) = @_;
+    my ($class, $impl, @args) = @_;
 
-    my $factory = $class->new(_implementation => $impl, _options => $args);
+    my $factory = $class->new(_implementation => $impl, _options => [ @args ]);
 
     my $i = $factory->_implementation();
 
@@ -31,7 +31,7 @@ sub create {
 
         my $options = $factory->_options();
 
-        my $implementation = $iclass->new($options);
+        my $implementation = $iclass->new( @{ $options });
         # TODO - should we sneak a factory attr onto the metaclass?
         return $implementation;
     }
@@ -102,7 +102,7 @@ MooseX::AbstractFactory::Role - AbstractFactory behaviour as a Moose extension
 
 =head1 VERSION
 
-version 0.003003
+version 0.004000
 
 =head1 SYNOPSIS
 

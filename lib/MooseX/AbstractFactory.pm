@@ -7,7 +7,7 @@ use Moose::Exporter;
 use MooseX::AbstractFactory::Role;
 use MooseX::AbstractFactory::Meta::Class;
 
-our $VERSION = '0.003003'; # VERSION
+our $VERSION = '0.004000'; # VERSION
 
 our $AUTHORITY = 'cpan:PENFOLD';
 
@@ -59,7 +59,7 @@ MooseX::AbstractFactory - AbstractFactory behaviour as a Moose extension
 
 =head1 VERSION
 
-version 0.003003
+version 0.004000
 
 =head1 SYNOPSIS
 
