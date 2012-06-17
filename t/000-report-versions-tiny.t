@@ -12,7 +12,7 @@ my $v = "\n";
 
 eval {                     # no excuses!
     # report our Perl details
-    my $want = '5.006';
+    my $want = "any version";
     my $pv = ($^V || $]);
     $v .= "perl: $pv (wanted $want) on $^O from $^X\n\n";
 };
@@ -49,7 +49,6 @@ sub pmver {
 }
 
 eval { $v .= pmver('Class::Load','any version') };
-eval { $v .= pmver('English','any version') };
 eval { $v .= pmver('ExtUtils::MakeMaker','6.30') };
 eval { $v .= pmver('File::Find','any version') };
 eval { $v .= pmver('File::Temp','any version') };
@@ -59,9 +58,9 @@ eval { $v .= pmver('Moose::Exporter','any version') };
 eval { $v .= pmver('Moose::Meta::Class','any version') };
 eval { $v .= pmver('Moose::Role','any version') };
 eval { $v .= pmver('Test::Exception','any version') };
+eval { $v .= pmver('Test::Fatal','any version') };
 eval { $v .= pmver('Test::Moose','any version') };
 eval { $v .= pmver('Test::More','0.88') };
-eval { $v .= pmver('Test::Requires','any version') };
 eval { $v .= pmver('Try::Tiny','any version') };
 eval { $v .= pmver('strict','any version') };
 eval { $v .= pmver('warnings','any version') };

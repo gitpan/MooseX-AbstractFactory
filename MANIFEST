@@ -20,6 +20,7 @@ t/05-override_validate_imp.t
 t/author-critic.t
 t/author-pod-spell.t
 t/author-test-eol.t
+t/impl-does-arrayref.t
 t/release-cpan-changes.t
 t/release-dist-manifest.t
 t/release-distmeta.t

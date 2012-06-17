@@ -7,7 +7,7 @@ use Moose::Exporter;
 use MooseX::AbstractFactory::Role;
 use MooseX::AbstractFactory::Meta::Class;
 
-our $VERSION = '0.004000'; # VERSION
+our $VERSION = '0.004001'; # VERSION
 
 our $AUTHORITY = 'cpan:PENFOLD';
 
@@ -19,7 +19,9 @@ Moose::Exporter->setup_import_methods(
 );
 
 sub implementation_does {
-    my ($caller, @roles) = @_;
+    my ($caller, @args) = @_;
+
+    my @roles = ref $args[0] eq 'ARRAY' ? @{ $args[0] } : @args;
 
     $caller->meta->implementation_roles(\@roles);
     return;
@@ -59,7 +61,7 @@ MooseX::AbstractFactory - AbstractFactory behaviour as a Moose extension
 
 =head1 VERSION
 
-version 0.004000
+version 0.004001
 
 =head1 SYNOPSIS
 

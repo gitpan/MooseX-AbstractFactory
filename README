@@ -2,7 +2,7 @@ NAME
     MooseX::AbstractFactory - AbstractFactory behaviour as a Moose extension
 
 VERSION
-    version 0.004000
+    version 0.004001
 
 SYNOPSIS
             package My::Factory;
