@@ -5,7 +5,7 @@
       "Caleb Cushing <xenoterracide@gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300018, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Dist::Zilla version 5.012, CPAN::Meta::Converter version 2.133380",
    "license" : [
       "perl_5"
    ],
@@ -25,6 +25,16 @@
             "ExtUtils::MakeMaker" : "6.30"
          }
       },
+      "develop" : {
+         "requires" : {
+            "Pod::Coverage::TrustPod" : "0",
+            "Test::CPAN::Changes" : "0.19",
+            "Test::CPAN::Meta" : "0",
+            "Test::Pod" : "1.41",
+            "Test::Pod::Coverage" : "1.08",
+            "version" : "0.9901"
+         }
+      },
       "runtime" : {
          "requires" : {
             "Class::Load" : "0",
@@ -40,12 +50,14 @@
       },
       "test" : {
          "requires" : {
-            "File::Find" : "0",
-            "File::Temp" : "0",
+            "File::Spec" : "0",
+            "IO::Handle" : "0",
+            "IPC::Open3" : "0",
             "Test::Exception" : "0",
             "Test::Fatal" : "0",
             "Test::Moose" : "0",
-            "Test::More" : "0.88"
+            "Test::More" : "0.88",
+            "perl" : "5.006"
          }
       }
    },
@@ -61,6 +73,9 @@
          "web" : "https://github.com/fleetfootmike/MX-AbstractFactory"
       }
    },
-   "version" : "0.004001"
+   "version" : "0.004002",
+   "x_contributors" : [
+      "Zoffix Znet <cpan@zoffix.com>"
+   ]
 }
 

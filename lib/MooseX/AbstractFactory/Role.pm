@@ -7,7 +7,7 @@ use Moose::Autobox;
 use Class::Load qw( load_class );
 use Try::Tiny;
 
-our $VERSION = '0.004001'; # VERSION
+our $VERSION = '0.004002'; # VERSION
 
 our $AUTHORITY = 'cpan:PENFOLD';
 
@@ -78,7 +78,7 @@ sub _validate_implementation_class {
 			# Lifted from MooseX::Recipe::Builder->_build_anon_meta()
 
 			# load our role classes
-			$roles->map( sub { Class::MOP::load_class($_); } );
+			$roles->map( sub { load_class($_); } );
 
 			# apply roles to anon class
 			if (scalar @{$roles} == 1) {
@@ -99,9 +99,11 @@ sub _validate_implementation_class {
 1;
 # ABSTRACT: AbstractFactory behaviour as a Moose extension
 
-
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -109,7 +111,7 @@ MooseX::AbstractFactory::Role - AbstractFactory behaviour as a Moose extension
 
 =head1 VERSION
 
-version 0.004001
+version 0.004002
 
 =head1 SYNOPSIS
 
@@ -134,7 +136,7 @@ Returns an instance of the requested implementation.
 
 =head2 _validate_implementation_class()
 
-Checks that the implementation class exists (via Class::MOP->load_class() )
+Checks that the implementation class exists (via Class::Load::load_class() )
 to be used, and (optionally) that it provides the methods defined in _roles().
 
 This can be overridden by a factory class definition if required: for example
@@ -198,10 +200,9 @@ Caleb Cushing <xenoterracide@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Mike Whitaker.
+This software is copyright (c) 2014 by Mike Whitaker.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

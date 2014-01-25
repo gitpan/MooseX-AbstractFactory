@@ -2,7 +2,7 @@ NAME
     MooseX::AbstractFactory - AbstractFactory behaviour as a Moose extension
 
 VERSION
-    version 0.004001
+    version 0.004002
 
 SYNOPSIS
             package My::Factory;
@@ -101,13 +101,16 @@ BUGS
     When submitting a bug or request, please include a test-file or a patch
     to an existing test-file that illustrates the bug or desired feature.
 
+CONTRIBUTOR
+    Zoffix Znet <cpan@zoffix.com>
+
 AUTHORS
     *   Mike Whitaker <mike@altrion.org>
 
     *   Caleb Cushing <xenoterracide@gmail.com>
 
 COPYRIGHT AND LICENSE
-    This software is copyright (c) 2012 by Mike Whitaker.
+    This software is copyright (c) 2014 by Mike Whitaker.
 
     This is free software; you can redistribute it and/or modify it under
     the same terms as the Perl 5 programming language system itself.

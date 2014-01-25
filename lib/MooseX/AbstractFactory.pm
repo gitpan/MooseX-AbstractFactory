@@ -7,7 +7,7 @@ use Moose::Exporter;
 use MooseX::AbstractFactory::Role;
 use MooseX::AbstractFactory::Meta::Class;
 
-our $VERSION = '0.004001'; # VERSION
+our $VERSION = '0.004002'; # VERSION
 
 our $AUTHORITY = 'cpan:PENFOLD';
 
@@ -51,9 +51,11 @@ sub init_meta {
 
 #ABSTRACT: AbstractFactory behaviour as a Moose extension
 
-
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -61,7 +63,7 @@ MooseX::AbstractFactory - AbstractFactory behaviour as a Moose extension
 
 =head1 VERSION
 
-version 0.004001
+version 0.004002
 
 =head1 SYNOPSIS
 
@@ -176,6 +178,10 @@ When submitting a bug or request, please include a test-file or a
 patch to an existing test-file that illustrates the bug or desired
 feature.
 
+=head1 CONTRIBUTOR
+
+Zoffix Znet <cpan@zoffix.com>
+
 =head1 AUTHORS
 
 =over 4
@@ -192,10 +198,9 @@ Caleb Cushing <xenoterracide@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Mike Whitaker.
+This software is copyright (c) 2014 by Mike Whitaker.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

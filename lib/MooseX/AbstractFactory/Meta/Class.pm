@@ -4,7 +4,7 @@ use warnings;
 use Moose;
 extends 'Moose::Meta::Class';
 
-our $VERSION = '0.004001'; # VERSION
+our $VERSION = '0.004002'; # VERSION
 
 our $AUTHORITY = 'cpan:PENFOLD';
 
@@ -23,9 +23,11 @@ has implementation_class_maker => (
 
 #ABSTRACT: Meta class for MooseX::AbstractFactory
 
-
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -33,7 +35,7 @@ MooseX::AbstractFactory::Meta::Class - Meta class for MooseX::AbstractFactory
 
 =head1 VERSION
 
-version 0.004001
+version 0.004002
 
 =head1 SYNOPSIS
 
@@ -92,10 +94,9 @@ Caleb Cushing <xenoterracide@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Mike Whitaker.
+This software is copyright (c) 2014 by Mike Whitaker.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
