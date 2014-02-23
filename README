@@ -2,7 +2,7 @@ NAME
     MooseX::AbstractFactory - AbstractFactory behaviour as a Moose extension
 
 VERSION
-    version 0.004002
+    version 0.004003
 
 SYNOPSIS
             package My::Factory;
@@ -84,15 +84,6 @@ DIAGNOSTICS
     "Invalid implementation class %s: %s""
         The implementation passed to the factory class mapped to a class
         that doesn't exist.
-
-BUGS AND LIMITATIONS
-    No bugs have been reported. Yet.
-
-    Please report any bugs or feature requests to "mike@altrion.org", or via
-    RT.
-
-ACKNOWLEDGMENTS
-    Thanks to Dave Rolsky for the suggestions for syntactic sugar.
 
 BUGS
     Please report any bugs or feature requests on the bugtracker website

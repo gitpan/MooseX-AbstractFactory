@@ -4,7 +4,7 @@ use warnings;
 use Moose;
 extends 'Moose::Meta::Class';
 
-our $VERSION = '0.004002'; # VERSION
+our $VERSION = '0.004003'; # VERSION
 
 our $AUTHORITY = 'cpan:PENFOLD';
 
@@ -35,7 +35,7 @@ MooseX::AbstractFactory::Meta::Class - Meta class for MooseX::AbstractFactory
 
 =head1 VERSION
 
-version 0.004002
+version 0.004003
 
 =head1 SYNOPSIS
 

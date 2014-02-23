@@ -5,7 +5,7 @@
       "Caleb Cushing <xenoterracide@gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 5.012, CPAN::Meta::Converter version 2.133380",
+   "generated_by" : "Dist::Zilla version 5.013, CPAN::Meta::Converter version 2.133380",
    "license" : [
       "perl_5"
    ],
@@ -30,14 +30,12 @@
             "Pod::Coverage::TrustPod" : "0",
             "Test::CPAN::Changes" : "0.19",
             "Test::CPAN::Meta" : "0",
-            "Test::Pod" : "1.41",
-            "Test::Pod::Coverage" : "1.08",
-            "version" : "0.9901"
+            "Test::Pod::Coverage" : "1.08"
          }
       },
       "runtime" : {
          "requires" : {
-            "Class::Load" : "0",
+            "Module::Runtime" : "0",
             "Moose" : "0",
             "Moose::Autobox" : "0",
             "Moose::Exporter" : "0",
@@ -49,15 +47,22 @@
          }
       },
       "test" : {
+         "recommends" : {
+            "CPAN::Meta" : "0",
+            "CPAN::Meta::Requirements" : "2.120900"
+         },
          "requires" : {
+            "ExtUtils::MakeMaker" : "0",
             "File::Spec" : "0",
+            "File::Spec::Functions" : "0",
             "IO::Handle" : "0",
             "IPC::Open3" : "0",
-            "Test::Exception" : "0",
+            "List::Util" : "0",
             "Test::Fatal" : "0",
             "Test::Moose" : "0",
-            "Test::More" : "0.88",
-            "perl" : "5.006"
+            "Test::More" : "0",
+            "perl" : "5.006",
+            "version" : "0"
          }
       }
    },
@@ -73,7 +78,7 @@
          "web" : "https://github.com/fleetfootmike/MX-AbstractFactory"
       }
    },
-   "version" : "0.004002",
+   "version" : "0.004003",
    "x_contributors" : [
       "Zoffix Znet <cpan@zoffix.com>"
    ]

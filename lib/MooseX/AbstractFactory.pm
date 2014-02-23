@@ -4,10 +4,9 @@ use warnings;
 use Moose ();
 
 use Moose::Exporter;
-use MooseX::AbstractFactory::Role;
 use MooseX::AbstractFactory::Meta::Class;
 
-our $VERSION = '0.004002'; # VERSION
+our $VERSION = '0.004003'; # VERSION
 
 our $AUTHORITY = 'cpan:PENFOLD';
 
@@ -47,7 +46,7 @@ sub init_meta {
     return $options{for_class}->meta();
 }
 
-1;    # Magic true value required at end of module
+1;
 
 #ABSTRACT: AbstractFactory behaviour as a Moose extension
 
@@ -63,7 +62,7 @@ MooseX::AbstractFactory - AbstractFactory behaviour as a Moose extension
 
 =head1 VERSION
 
-version 0.004002
+version 0.004003
 
 =head1 SYNOPSIS
 
@@ -158,16 +157,6 @@ then it will die with the above error.
 The implementation passed to the factory class mapped to a class that doesn't exist.
 
 =back
-
-=head1 BUGS AND LIMITATIONS
-
-No bugs have been reported. Yet.
-
-Please report any bugs or feature requests to C<mike@altrion.org>, or via RT.
-
-=head1 ACKNOWLEDGMENTS
-
-Thanks to Dave Rolsky for the suggestions for syntactic sugar.
 
 =head1 BUGS
 
